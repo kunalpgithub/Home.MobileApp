@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:c="clr-namespace:Home.MobileApp.Converters;assembly=Home.MobileApp"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="Home.MobileApp.Views.Attendance">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ItemTappedEventArgsConverter x:Key="itemTappedEventArgsConverter"></c:ItemTappedEventArgsConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Attendance" />
+            <DatePicker Date="{Binding SelectedDate}" Format="D" HorizontalOptions="Center" ></DatePicker>
+            <ListView ItemsSource="{Binding EmployeeList, Mode=TwoWay}" HasUnevenRows="True">
+                <ListView.Behaviors>
+                    <b:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}"  
+                                          EventArgsParameterPath="Item" EventArgsConverter="{StaticResource itemTappedEventArgsConverter}" ></b:EventToCommandBehavior>
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"  ></Image>
+                                <Label Grid.Column="2" Grid.Row="1" Text="{Binding FirstName}" ></Label>
+                                <Label Grid.Column="3" Grid.Row="1" Text="{Binding LastName}"></Label>
+                                <Button Text="Yes" Grid.Column="2" Grid.Row="2"></Button>
+                                <Button Text="No" Grid.Column="3" Grid.Row="2"></Button>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

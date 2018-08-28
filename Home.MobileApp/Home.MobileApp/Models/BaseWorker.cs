@@ -14,7 +14,7 @@ namespace Home.MobileApp.Models
 
         public void DidWork(bool didWork)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

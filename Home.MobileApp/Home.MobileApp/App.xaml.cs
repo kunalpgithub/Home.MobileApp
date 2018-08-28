@@ -22,6 +22,10 @@ namespace Home.MobileApp
 
         protected override async void OnInitialized()
         {
+#if DEBUG
+            LiveReload.Init();
+
+#endif
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
@@ -31,6 +35,7 @@ namespace Home.MobileApp
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<Attendance>();
         }
     }
 }
