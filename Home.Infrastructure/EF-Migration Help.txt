@@ -1,0 +1,6 @@
+﻿How to run EF migration.
+
+1. Set Home.WebAPI(Any executable proejct that reference context) as start up project.
+2. Go to Package Manager Console.
+3. Select default project as Home.Infrastructure.
+4. Now run migration command - AddMigration and UpdateDatabase
