@@ -1,30 +1,42 @@
-﻿//using Home.MobileApp.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Text;
+﻿using Home.AppCore.Entities;
+using Home.AppCore.Repository;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-//namespace Home.MobileApp.Repository
-//{
-//    internal class EmployeeRepository
-//    {
+namespace Home.Infrastructure.Repository
+{
+    public class EmployeeRepository : IEmployeeRepository
+    {
+        HomeContext context = new HomeContext();
+        public void Add(Employee employee)
+        {
+            context.Employer.Add(employee);
+            context.SaveChanges();
+        }
 
-//        internal ICollection<IWorker> GetAllEmployee() {
+        public void Edit(Employee employee)
+        {
+            context.Entry(employee).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        }
 
-//            return this.GetAllMaids();
+        public Employee FindById(int EmployeeId)
+        {
+            return context.Employer.FirstOrDefault(x => x.EmployeeId == EmployeeId);
+        }
 
-//        }
+        public IEnumerable<Employee> GetEmployee()
+        {
+            return context.Employer;
+        }
 
-//        ICollection<IWorker> GetAllMaids() {
-//            List<IWorker> maidList = new List<IWorker>
-//            {
-//                new HouseMaid() { StartDate = new DateTime(2018, 08, 20), FirstName = "Rashmi", LastName = "Ben", JobType = MaidWork.Cooking },
-//                new HouseMaid() { StartDate = new DateTime(2018, 08, 20), FirstName = "Rashmi", LastName = "Ben", JobType = MaidWork.Cleaning }
-//            };
-//            return maidList;
-//        }
+        public void Remove(int EmployeeId)
+        {
+            Employee emp = context.Employer.Find(EmployeeId);
+            context.Employer.Remove(emp);
+            context.SaveChanges();
 
-//         void GetAllVendors() {
-
-//        }
-//    }
-//}
+        }
+    }
+}

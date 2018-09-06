@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace Home.WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
-    public class ValuesController : ControllerBase
+    //[ApiController]
+    public class EmployeeController : ControllerBase
     {
         // GET api/values
         [HttpGet]
