@@ -27,12 +27,15 @@ namespace Home.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            
             services.AddMvc(
                 //opn => opn.Filters.Add(typeof(Filter.ValidationFilter))//https://blogs.msdn.microsoft.com/webdev/2018/02/02/asp-net-core-2-1-roadmap/
                 ).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            var connection = @"Server=(localdb)\mssqllocaldb;Database=HomeApp;Trusted_Connection=True;ConnectRetryCount=0";
+            //var connection = @"Server=(localdb)\mssqllocaldb;Database=HomeApp;Trusted_Connection=True;ConnectRetryCount=0";
             //services.AddDbContext<HomeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HomeAppDataBase")));
-            services.AddDbContext<HomeContext>(options => options.UseSqlServer(connection));
+            //services.AddDbContext<HomeContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<HomeContext>(opn =>  opn.UseInMemoryDatabase("HomeWebAPI"));
 
         }
 
@@ -49,7 +52,12 @@ namespace Home.WebAPI
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Employees}/{action=Get}/{id?}");
+            });
         }
     }
 }

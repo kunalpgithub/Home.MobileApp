@@ -8,9 +8,10 @@ namespace Home.Infrastructure
 {
     public class HomeContext: DbContext
     {
-        public HomeContext() {
-        }
+
         public HomeContext(DbContextOptions<HomeContext> options):base(options) {
+            //this.Database.EnsureCreated();
+            //this.Database.EnsureDeleted();
         }
 
         public DbSet<Employee> Employer { get; set; }
