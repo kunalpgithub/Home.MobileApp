@@ -33,7 +33,7 @@ namespace Home.AppCore.Entities
         public string FirstName { get; protected set; }
         public string LastName { get; protected set; }
         public DateTime StartDate { get; protected set; }
-        public DateTime EndDate { get; protected set; }
+        public DateTime? EndDate { get; protected set; }
         public string JobTitle { get; protected set; }
         public EmployeeRate Rate { get; protected set; }
         private List<EmployeeAttendance> _attendance;

@@ -20,7 +20,7 @@ namespace Home.Infrastructure
             //seed data here.
             modelBuilder.Entity<Employee>().HasData(
                 new { EmployeeId = 1, FirstName = "Kishan", LastName = "Kumar", StartDate = DateTime.Now.AddMonths(-1), JobTitle = "Driver", EmployeeRateId = 1 },
-                new { EmployeeId = 1, FirstName = "Manish", LastName = "Pandey", StartDate = DateTime.Now.AddMonths(-4), JobTitle = "Peon", EmployeeRateId = 1 }
+                new { EmployeeId = 2, FirstName = "Manish", LastName = "Pandey", StartDate = DateTime.Now.AddMonths(-4), JobTitle = "Peon", EmployeeRateId = 1 }
                 );
 
         }

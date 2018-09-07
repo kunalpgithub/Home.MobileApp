@@ -9,7 +9,11 @@ namespace Home.Infrastructure.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        HomeContext context = new HomeContext();
+        HomeContext context;
+        public EmployeeRepository(HomeContext _context) {
+            context = _context;
+        }
+
         public void Add(Employee employee)
         {
             context.Employer.Add(employee);
